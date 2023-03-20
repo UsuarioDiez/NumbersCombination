@@ -2,7 +2,7 @@
 
 namespace NumberCombinations
 {
-    class Class
+    class Program
     {
         static void Main(string[] args)
         {
