@@ -6,7 +6,11 @@ namespace NumberCombinations
     {
         static void Main(string[] args)
         {
-            
+            int[] numbers = new int[Math.Abs(ReadInt())];
+            for (int i = 0; i < numbers.Length; i++)
+            {
+                numbers[i] = ReadInt();
+            }
         }
 
         static List<int[]> GetBinaryArrays(int[] numbers)
@@ -29,7 +33,7 @@ namespace NumberCombinations
             return result;
         }
 
-        static int ReadArraySize()
+        static int ReadInt()
         {
             int result=0;
             bool sizeAssigned = false;
@@ -38,7 +42,7 @@ namespace NumberCombinations
                 try
                 {
                     Console.WriteLine("Enter array size:");
-                    result = Math.Abs(int.Parse(Console.ReadLine()));
+                    result =int.Parse(Console.ReadLine());
                     sizeAssigned = true;
                 }
                 catch
@@ -47,6 +51,11 @@ namespace NumberCombinations
                 }
             }
             return result;
+        }
+
+        static void FillArray(int[] numbers)
+        {
+
         }
     }
 }
