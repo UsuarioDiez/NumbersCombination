@@ -6,7 +6,7 @@ namespace NumberCombinations
     {
         static void Main(string[] args)
         {
-
+            
         }
 
         static List<int[]> GetBinaryArrays(int[] numbers)
@@ -25,6 +25,26 @@ namespace NumberCombinations
                     result.Add(tmpArrayFullLength);
                 }
                 else result.Add(tmpArray);
+            }
+            return result;
+        }
+
+        static int ReadArraySize()
+        {
+            int result=0;
+            bool sizeAssigned = false;
+            while (!sizeAssigned)
+            {
+                try
+                {
+                    Console.WriteLine("Enter array size:");
+                    result = Math.Abs(int.Parse(Console.ReadLine()));
+                    sizeAssigned = true;
+                }
+                catch
+                {
+                    Console.WriteLine("You must enter a valid array size");
+                }
             }
             return result;
         }
