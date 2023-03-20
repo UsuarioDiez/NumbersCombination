@@ -6,13 +6,16 @@ namespace NumberCombinations
     {
         static void Main(string[] args)
         {
+            Console.WriteLine("Enter array size.");
             int[] numbers = new int[Math.Abs(ReadInt())];
+            Console.WriteLine("\nEnter array values");
             for (int i = 0; i < numbers.Length; i++)
             {
+                Console.Write($"Enter value {i}: ");
                 numbers[i] = ReadInt();
             }
+            FindCombinations(numbers);
         }
-
         static List<int[]> GetBinaryArrays(int[] numbers)
         {
             int bSize = (int)Math.Pow(2, numbers.Length) - 1;
@@ -32,7 +35,6 @@ namespace NumberCombinations
             }
             return result;
         }
-
         static int ReadInt()
         {
             int result=0;
@@ -41,21 +43,46 @@ namespace NumberCombinations
             {
                 try
                 {
-                    Console.WriteLine("Enter array size:");
                     result =int.Parse(Console.ReadLine());
                     sizeAssigned = true;
                 }
                 catch
                 {
-                    Console.WriteLine("You must enter a valid array size");
+                    Console.WriteLine("You must enter an int");
                 }
             }
             return result;
         }
-
-        static void FillArray(int[] numbers)
+        static void FindCombinations(int[] numbers)
         {
-
+            int maxValue = numbers.Max();
+            int count = 0;
+            int sum;
+            int maxValueIndex = Array.IndexOf(numbers, maxValue);
+            numbers[maxValueIndex] = 0;
+            List<int[]> binaryArrays = GetBinaryArrays(numbers);
+            for (int i = 0; i < binaryArrays.Count; i++)
+            {
+                sum = 0;
+                for(int j=0; j<numbers.Length; j++)
+                {
+                    sum = sum + binaryArrays[i][j] * numbers[j];          
+                }
+                if (sum == maxValue & binaryArrays[i][maxValueIndex]!=1)
+                {
+                    count++;
+                    Console.WriteLine("\nSuccesful combination found!");
+                    for (int k = 0; k < numbers.Length; k++)
+                    {
+                        if (binaryArrays[i][k] != 0 & numbers[k]!=0)
+                        {
+                            Console.Write($"{numbers[k]}+");
+                        }
+                    }
+                    Console.Write($"={sum}");
+                }
+            }
+            Console.WriteLine($"\n\nThere were found {count} succesful combinations out of {binaryArrays.Count} posibilities");
         }
     }
 }
